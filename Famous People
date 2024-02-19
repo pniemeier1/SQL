@@ -1,0 +1,52 @@
+#For this project, I created 3 tables using JOIN statements
+
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    movie TEXT);
+
+    
+INSERT INTO famous_people (fullname, movie) VALUES ("angelina jolie", "Tomb Raider");
+INSERT INTO famous_people (fullname, movie) VALUES ("Goldie Hawn", "Private Benjamin");
+INSERT INTO famous_people (fullname, movie) VALUES (" Jennifer Lopez", "The Mother");
+INSERT INTO famous_people (fullname, movie) VALUES ("Kurt Russell", "The Christmas Chronicles");
+INSERT INTO famous_people (fullname, movie) VALUES ("Brad Pitt", "Ocean's Eleven");
+
+
+CREATE TABLE founded (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+INSERT INTO founded (person_id, name) VALUES (1, "Maddox Jolie-Pitt Foundation");
+INSERT INTO founded (person_id, name) VALUES (1, "National Center for Refugee and Immigrant Children");
+INSERT INTO founded (person_id, name) VALUES (2, "Goldie Hawn Foundation");
+INSERT INTO founded (person_id, name) VALUES (2, "Mindup");
+INSERT INTO founded (person_id, name) VALUES (3, "The Lopez Family Foundation");
+INSERT INTO founded (person_id, name) VALUES (3, "Children's Health Fund-Foundation");
+INSERT INTO founded (person_id, name) VALUES (3, "Amnesty International");
+INSERT INTO founded (person_id, name) VALUES (4, "Hawn Foundation");
+INSERT INTO founded (person_id, name) VALUES (4, "Boys & Girls Club");
+INSERT INTO founded (person_id, name) VALUES (4, "Kids Wish Network");
+
+
+CREATE table married (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+
+INSERT INTO married (person1_id, person2_id)
+    VALUES (1, 5);
+INSERT INTO married (person1_id, person2_id)
+    VALUES (2, 4);
+
+#This table is creating a list of famous people and a movie they starred in by using a JOIN statement between 2 tables
+
+SELECT famous_people.fullname, founded.name FROM famous_people
+JOIN founded
+ON famous_people.id = founded.person_id;
+
+#This table is listing the famous people that are married to each other using more than one JOIN statement
+
+SELECT a.fullname, b.fullname FROM married
+JOIN famous_people a
+ON married.person1_id = a.id
+JOIN famous_people b
+ON married.person2_id = b.id
