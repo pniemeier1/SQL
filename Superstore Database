@@ -40,3 +40,8 @@ FROM superstore;
 SELECT avg(price)
 FROM superstore
 WHERE category="Kitchen Supplies"
+
+#Show a statistic about stock amount for a particular item.
+SELECT COUNT(stock_quantity), item_name
+FROM superstore
+WHERE item_name="Air Purifier";
